@@ -49,7 +49,8 @@ contract ContributionRecord {
 
     function getBlockUsers(uint256 blockNumber, uint256 startIndex, uint256 endIndex) public view returns (address[] memory) {
         uint256 length = contributeBlockInfo[blockNumber].users.length;
-        require(endIndex <= startIndex && startIndex <= length - 1, "EndIndex must be greater than or equal to startIndex");
+        require(length > 0, "No users in the block");
+        require(startIndex <= endIndex && startIndex <= length - 1, "EndIndex must be greater than or equal to startIndex");
         if (endIndex > length -1) {
             endIndex = length -1;
         }
